@@ -5,6 +5,7 @@ import { Header } from "@/components/header"
 import { Sidebar } from "@/components/sidebar"
 import { HomePage } from "@/components/home-page"
 import { UserManagementPage } from "@/components/user-management-page"
+import { ProductAnalysisPage } from "@/components/product-analysis-page"
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState("home")
@@ -20,9 +21,10 @@ export default function App() {
         onPageChange={setCurrentPage}
       />
 
-      <main className="pt-16">
+      <main className="pt-16 px-2 sm:px-4 lg:px-6">
         {currentPage === "home" && <HomePage />}
         {currentPage === "users" && <UserManagementPage />}
+        {currentPage === "analysis" && <ProductAnalysisPage />}
       </main>
     </div>
   )

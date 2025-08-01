@@ -1,6 +1,6 @@
 "use client"
 
-import { X, Home, Users } from "lucide-react"
+import { X, Home, Users, BarChart3 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 interface SidebarProps {
@@ -14,6 +14,7 @@ export function Sidebar({ isOpen, onClose, currentPage, onPageChange }: SidebarP
   const menuItems = [
     { id: "home", label: "ホーム", icon: Home },
     { id: "users", label: "ユーザー管理", icon: Users },
+    { id: "analysis", label: "商材分析", icon: BarChart3 },
   ]
 
   if (!isOpen) return null

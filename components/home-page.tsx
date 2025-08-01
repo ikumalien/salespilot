@@ -76,7 +76,7 @@ export function HomePage() {
   return (
     <div className="p-6 space-y-6">
       {/* Metrics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         <Card className="bg-green-500 text-white border-0 overflow-hidden">
           <CardContent className="p-6">
             <div className="space-y-2">
@@ -118,7 +118,11 @@ export function HomePage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-semibold">お知らせ</h2>
-                <Button variant="link" className="text-blue-600 p-0">
+                <Button
+                  variant="link"
+                  className="text-blue-600 p-0"
+                  onClick={() => alert("全てのお知らせを表示します")}
+                >
                   すべて見る &gt;
                 </Button>
               </div>
@@ -147,26 +151,41 @@ export function HomePage() {
             <CardContent className="p-6">
               <h2 className="text-lg font-semibold mb-4">ネクストアクション</h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div className="text-center p-4 border rounded-lg">
                   <FileText className="h-12 w-12 mx-auto mb-3 text-gray-400" />
                   <h3 className="font-medium mb-2">新規案件の登録</h3>
                   <p className="text-sm text-gray-600 mb-3">自社提案書を登録し、AIによる分析を開始</p>
-                  <Button className="bg-indigo-600 hover:bg-indigo-700">登録する</Button>
+                  <Button
+                    className="bg-indigo-600 hover:bg-indigo-700"
+                    onClick={() => (window.location.href = "#analysis")}
+                  >
+                    登録する
+                  </Button>
                 </div>
 
                 <div className="text-center p-4 border rounded-lg">
                   <Folder className="h-12 w-12 mx-auto mb-3 text-gray-400" />
                   <h3 className="font-medium mb-2">アプローチリスト作成</h3>
                   <p className="text-sm text-gray-600 mb-3">顧客リストを作成し最適化</p>
-                  <Button className="bg-indigo-600 hover:bg-indigo-700">作成する</Button>
+                  <Button
+                    className="bg-indigo-600 hover:bg-indigo-700"
+                    onClick={() => alert("アプローチリスト作成機能を開発中です")}
+                  >
+                    作成する
+                  </Button>
                 </div>
 
                 <div className="text-center p-4 border rounded-lg">
                   <Mail className="h-12 w-12 mx-auto mb-3 text-gray-400" />
                   <h3 className="font-medium mb-2">アプローチ設定</h3>
                   <p className="text-sm text-gray-600 mb-3">チャネルと方法を最適化し設定</p>
-                  <Button className="bg-indigo-600 hover:bg-indigo-700">設定する</Button>
+                  <Button
+                    className="bg-indigo-600 hover:bg-indigo-700"
+                    onClick={() => alert("アプローチ設定機能を開発中です")}
+                  >
+                    設定する
+                  </Button>
                 </div>
               </div>
             </CardContent>
@@ -179,30 +198,34 @@ export function HomePage() {
             <h2 className="text-lg font-semibold mb-4">実行中キャンペーン一覧</h2>
 
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full text-sm min-w-[600px]">
                 <thead>
                   <tr className="border-b">
-                    <th className="text-left py-2">情報日</th>
-                    <th className="text-left py-2">キャンペーン名</th>
-                    <th className="text-left py-2">リスト名</th>
-                    <th className="text-left py-2">チャネル</th>
-                    <th className="text-left py-2">ステータス</th>
+                    <th className="text-left py-2 px-2">情報日</th>
+                    <th className="text-left py-2 px-2">キャンペーン名</th>
+                    <th className="text-left py-2 px-2">リスト名</th>
+                    <th className="text-left py-2 px-2 hidden sm:table-cell">チャネル</th>
+                    <th className="text-left py-2 px-2">ステータス</th>
                   </tr>
                 </thead>
                 <tbody>
                   {campaigns.map((campaign, index) => (
-                    <tr key={index} className="border-b">
-                      <td className="py-3">{campaign.date}</td>
-                      <td className="py-3">
+                    <tr
+                      key={index}
+                      className="border-b hover:bg-gray-50 cursor-pointer transition-colors"
+                      onClick={() => alert(`${campaign.name}の詳細を表示します`)}
+                    >
+                      <td className="py-3 px-2 text-xs sm:text-sm">{campaign.date}</td>
+                      <td className="py-3 px-2">
                         <div>
-                          <div className="font-medium">{campaign.name}</div>
+                          <div className="font-medium text-xs sm:text-sm">{campaign.name}</div>
                           {campaign.target && <div className="text-xs text-gray-500">期間目標: {campaign.target}</div>}
                         </div>
                       </td>
-                      <td className="py-3">{campaign.list}</td>
-                      <td className="py-3">{campaign.channel}</td>
-                      <td className="py-3">
-                        <Badge className={campaign.statusColor}>{campaign.status}</Badge>
+                      <td className="py-3 px-2 text-xs sm:text-sm">{campaign.list}</td>
+                      <td className="py-3 px-2 text-xs sm:text-sm hidden sm:table-cell">{campaign.channel}</td>
+                      <td className="py-3 px-2">
+                        <Badge className={`${campaign.statusColor} text-xs`}>{campaign.status}</Badge>
                       </td>
                     </tr>
                   ))}
